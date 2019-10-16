@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemplo MySQL</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">EXEMPLO MYSQL</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" href="/exemplo">Home</a>
+				<a class="nav-item nav-link" href="/exemplo/lista.html">Lista</a>
+				<a class="nav-item nav-link active" href="/exemplo/cadastro.html">Cadastramento <span class="sr-only">(current)</span></a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<form id="cadastroForm">
+		  <div class="form-group">
+		    <label for="InputFabricante">Fabricante</label>
+		    <input name="fabricante" class="form-control" id="InputFabricante" aria-describedby="fabricanteHelp" placeholder="Entre o nome do Fabricante">
+		    <small id="fabricantelHelp" class="form-text text-muted">Nome do Fabricante do Equipamento</small>
+		  </div>
+		  <div class="form-group">
+		    <label for="InputModel">Modelo</label>
+		    <input name="modelo" class="form-control" id="InputModel" aria-describedby="modelHelp" placeholder="Entre o modelo do Equipamento">
+		    <small id="fabricantelHelp" class="form-text text-muted">Nome do Modelo do Equipamento</small>
+		  </div>
+		  <div class="form-group">
+		    <label for="InputIPAddress">Endereco IP</label>
+		    <input name="ip" class="form-control" id="InputIPAddress" aria-describedby="ipAddressHelp" placeholder="Entre o IP do equipamento">
+		    <small id="ipAddressHelp" class="form-text text-muted">Endereco IP do Equipamento</small>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="js/cadastro.js"></script>
+</body>
+</html>

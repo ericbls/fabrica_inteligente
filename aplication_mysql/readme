@@ -1,0 +1,10 @@
+Para criar a tabela no MySQL use:
+
+1)  CREATE DATABASE fabricainteligente;
+
+2)  CREATE TABLE Maquinasx (
+    id INT UNSIGNED AUTO_INCREMENT,
+    ip  VARCHAR(20) NOT NULL UNIQUE,
+    Modelo  VARCHAR(255) NOT NULL,
+    Fabricante  VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id, ip));

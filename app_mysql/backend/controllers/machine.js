@@ -3,7 +3,7 @@ const mysql = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'ubuntu',
-  password : 'Pa$$w0rd'
+  password : 'buonpater7'
 });
 
 function getall(req,res){
@@ -21,6 +21,7 @@ function add(req,res){
 
 	connection.query('INSERT INTO fabricainteligente.Maquinas(Fabricante, Modelo, ip) VALUES (' + values + ')', function(error, results){
 	 	if (error){
+			console.log(error);
 	 		res.sendStatus(500);
 	 	} else {
 			res.send(req.body);

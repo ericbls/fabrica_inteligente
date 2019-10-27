@@ -6,6 +6,7 @@ var connection = mysql.createConnection({
   password : 'buonpater7'
 });
 
+/*
 function getall(req,res){
 	connection.query('SELECT * FROM fabricainteligente.Maquinas', function(error, results){
 		if(error){
@@ -28,5 +29,17 @@ function add(req,res){
 		}
 	 })
 }
+*/
 
-module.exports = {getall, add}
+function add_data(req,res){
+	connection.query('', function(error, results){
+		if(error){
+			console.log(error);
+			res.sendStatus(500);
+		} else{
+			res.send(req.body);
+		}
+	})
+}
+
+module.exports = {/* getall, add, */add_data}

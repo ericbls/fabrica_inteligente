@@ -41,11 +41,11 @@ int main()
 
       // Criando pacote de dados a ser enviado
       char package[500];
-      sprintf(package, "PMC Message: %s\nAlarm status: %d\nEmg status: %d\nRun status: %d\nMotion status: %d\nThis is ERIC LEE\n",pmc_msg,buf.alarm,buf.emergency,buf.run,buf.motion);
+      sprintf(package, '"pmc_msg":"%s","alm_stat":"%d","emg_stat":"%d","run_status":"%d","motion_stat":"%d"',pmc_msg,buf.alarm,buf.emergency,buf.run,buf.motion);
 
       // Enviando os dados para rede
       HTTP servidor;
-      servidor.sendData("18.191.146.49","80", "/", "application/json",package);
+      servidor.sendData("18.191.146.49","80", "/data", "application/json",package);
 
       // Finalizando conexão
       cnc_exitprocess();

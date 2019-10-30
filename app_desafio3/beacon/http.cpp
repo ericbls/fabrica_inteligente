@@ -4,13 +4,13 @@
 #include <iostream>
 #include <string>
 
-int HTTP::getData(const char* host, const char* port){
+int HTTP::getData(const char* host, const char* port, const char* target){
 	try{
         net::io_context ioc;
         tcp::resolver resolver(ioc);
         beast::tcp_stream stream(ioc);
 
-        char target[] = "/";
+        //char target[] = "/";
         int version = 11;
 
         auto const results = resolver.resolve(host, port);
@@ -52,13 +52,13 @@ int HTTP::getData(const char* host, const char* port){
     return EXIT_SUCCESS;
 }
 
-int HTTP::sendData(const char* host,const char* port, const char* contentType, const char* data){
+int HTTP::sendData(const char* host,const char* port, const char* target, const char* contentType, const char* data){
 	try{
         net::io_context io_context;
         tcp::resolver resolver(io_context);
         beast::tcp_stream stream(io_context);
 
-        char target[] = "/";
+        //char target[] = "/";
         int version = 11;
 
         auto const results = resolver.resolve(host, port);

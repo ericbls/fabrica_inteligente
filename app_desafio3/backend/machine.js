@@ -30,7 +30,7 @@ function add_machine(req,res){
 }
 
 function add_data(req,res){
-	let values = '"' + req.body.id + '","' + req.body.ip + '","' + req.body.pmc_alm +'","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '";
+	let values = '"' + req.body.id + '","' + req.body.ip + '","' + req.body.pmc_alm +'","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '"';
 	connection.query('INSERT INTO desafio3.Dados(id, ip, pmc_alm, alm_stat, emg_stat, run_stat, motion_stat) VALUES (' + values + ')', function(error, results){
 		if(error){
 			console.log(error);

@@ -3,5 +3,6 @@ const machine = require('./machine');
 exports.build = function(server){
 
   server
-  	//.get('/api/maquina', 	machine.getall)
-    .post('/data', 	machine.add_data)
+  	.get('/cadastro', machine.getall)
+    .post('/cadastro', machine.add_machine)
+    .post('/dados', machine.add_data)

@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
 });
 
 function getall(req,res){
-	connection.query('SELECT * FROM fabricainteligente.Maquinas', function(error, results){
+	connection.query('SELECT * FROM exemplo_mysql.Maquinas', function(error, results){
 		if(error){
 			res.sendStatus(500);
 		} else {
@@ -19,7 +19,7 @@ function getall(req,res){
 function add(req,res){
 	let values = '"' + req.body.fabricante +'","' + req.body.modelo +'","' + req.body.ip + '"';
 
-	connection.query('INSERT INTO fabricainteligente.Maquinas(Fabricante, Modelo, ip) VALUES (' + values + ')', function(error, results){
+	connection.query('INSERT INTO exemplo_mysql.Maquinas(Fabricante, Modelo, ip) VALUES (' + values + ')', function(error, results){
 	 	if (error){
 			console.log(error);
 	 		res.sendStatus(500);

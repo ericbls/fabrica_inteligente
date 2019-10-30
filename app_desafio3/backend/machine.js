@@ -32,7 +32,8 @@ function add(req,res){
 */
 
 function add_data(req,res){
-	connection.query('', function(error, results){
+	let values = '"' + req.body.ip + '","' + req.body.pmc_alm +'","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '";
+	connection.query('INSERT INTO desafio3.Maquinas(ip, pmc_alm, alm_stat, emg_stat, run_stat, motion_stat) VALUES (' + values + ')', function(error, results){
 		if(error){
 			console.log(error);
 			res.sendStatus(500);

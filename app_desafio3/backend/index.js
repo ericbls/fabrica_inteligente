@@ -1,12 +1,12 @@
 const express       = require('express');
 const routes 		= require('./api.js');
-const bodyParser    = require('body-parser');
+//const bodyParser    = require('body-parser');
 
 var api = express();
 
 api.set('port', process.env.PORT || 6000);
 
-api.use(bodyParser.json());
+api.use(express.json());
 
 routes.build(api);
 

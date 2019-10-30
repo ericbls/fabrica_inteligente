@@ -67,7 +67,7 @@ int main()
 
   // Enviando os dados para rede
   HTTP servidor;
-  servidor.sendData("18.191.146.49","80", "/desafio3/cadastro", "application/json",package);
+  servidor.sendData("18.191.146.49","80", "/desafio3/dados", "application/json",package);
 
   	return 0;
 }

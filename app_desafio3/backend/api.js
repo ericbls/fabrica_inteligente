@@ -6,3 +6,4 @@ exports.build = function(server){
   	.get('/cadastro', machine.getall)
     .post('/cadastro', machine.add_machine)
     .post('/dados', machine.add_data)
+}

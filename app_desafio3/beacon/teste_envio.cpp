@@ -59,7 +59,7 @@ int main()
   */
   // Criando pacote de dados a ser enviado
   char package[2000];
-  sprintf(package, '{"pmc_msg":"%s","alm_stat":"%d","emg_stat":"%d","run_status":"%d","motion_stat":"%d"}','MENSAGEM PMC';,1,2,3,4);
+  sprintf(package, '{"pmc_msg":"%s","alm_stat":"%d","emg_stat":"%d","run_status":"%d","motion_stat":"%d"}','MENSAGEM PMC';1,2,3,4);
 
   // Enviando os dados para rede
   HTTP servidor;

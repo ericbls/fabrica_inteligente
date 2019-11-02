@@ -1,17 +1,25 @@
-#ifndef get_machine_data_h
-#define get_machine_data_h
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <fstream>
+
+
+using namespace std;
 
 class getMachineData
 {
 public:
 
-	// Construtor de classe
-	getMachineData();
+  getMachineData();
 
-	// Função para inicializar comunicação com a máquina
-	void machine_connect(char ip[], short ret[]);
+  void input_adress(const char* ip_maq);
 
-	// Extração dos dados
-	char *data_extract(unsigned short handle, );
+  void machine_connect();
 
+  void data_extract();
+
+  void send_package();
+
+  void machine_disconnect();
 }

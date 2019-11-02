@@ -3,66 +3,65 @@
 #include <string.h>
 #include <stdlib.h>
 #include <fstream>
-#include <time.h>
 #include "http.hpp"
 #include "fwlib32.h"
 
 using namespace std;
 
-
-
-// Inicializando comunicacao e funcoes
-unsigned short handle;
-short ret;
-char ip_maq[]="10.202.32.12";
-char retvar[200];
-ret = cnc_startupprocess(0,"test.log");
-ret = cnc_allclibhndl3(ip_maq, 8193, 10, &handle);
-
-if (!ret)
+class getMachineData
 {
-  // Extraindo dados de mensagem do PMC
-  OPMSG3 opmsg;
-  char pmc_msg[200];
-  short int read_num=5;
-  cnc_rdopmsg3(handle,0,&read_num,&opmsg);
-  if (opmsg.datano==-1)
+
+  // Construtor de classe
+  getMachineData::getMachineData()
   {
-    strcpy(pmc_msg,"NO ALARM\0");
-  }
-  else
-  {
-    strcpy(pmc_msg,opmsg.data);
+    unsigned short handle;
+    short ret;
+    char pack[1000];
+    char port[6] = "80";
+    char target[20]="/desafio3/dados";
   }
 
-  // Extraindo dados de status da maquina
-  ODBST buf;
-  cnc_statinfo(handle, &buf);
-
-
-   // Criando pacote de dados a ser enviado
-  char pack[1000];
-  char old_pack[1000]
-  sprintf(pack, "{\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\"}",pmc_msg,buf.alarm,buf.emergency,buf.run,buf.motion);
-
-  if strcmp(old_pack,pack)!=0
+  // Função que receberá como input os dados de entrada da máquina
+  void getmachineData::input_address(const char* ip)
   {
-    // Enviando os dados para rede
+    char ip_maq[20] = ip;
+  }
+
+  // Função para inicializar comunicação com a máquina
+  void getMachineData::machine_connect()
+  {
+    ret = cnc_startupprocess(0,"test.log");
+    ret = cnc_allclibhndl3(ip_maq, 8193, 10, &handle);
+  }
+
+  // Extração dos dados
+  void getMachineData::data_extract()
+  {
+    // Extraindo dados de mensagem do PMC
+    OPMSG3 opmsg;
+    short int read_num=5;
+    cnc_rdopmsg3(handle,0,&read_num,&opmsg);
+
+    // Extraindo dados de status da maquina
+    ODBST buf;
+    cnc_statinfo(handle, &buf);
+
+    // Criando pacote de envio
+    sprintf(pack, "{\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\"}",opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
+  }
+
+  // Função que envia os dados para o servidor desejado
+  void getMachineData::send_package()
+  {
     HTTP servidor;
-    servidor.sendData("18.191.146.49","80", "/desafio3/dados", "application/json", pack);
+    servidor.sendData(ip_maq, port, target, "application/json", pack)
   }
-  else
+
+  // Fechando conexao
+  void getMachineData::machine_disconnect()
   {
-    cout<<"";
+    // Finalizando conexão
+    cnc_exitprocess();
   }
 
-  // Finalizando conexão
-  cnc_exitprocess();
- 
-  cout<<"\n"<<package<<"\n";
-}
-
-else
-{
-  cout<<"machine is unreachable";
 }

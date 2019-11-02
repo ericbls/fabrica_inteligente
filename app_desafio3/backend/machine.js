@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
   password : 'buonpater7'
 });
 
-function getall(req,res){
+function get_data(req,res){
 	connection.query('SELECT * FROM desafio3.Dados', function(error, results){
 		if(error){
 			res.sendStatus(500);
@@ -40,6 +40,16 @@ function add_data(req,res){
 			res.sendStatus(500);
 		} else{
 			res.send(req.body);
+		}
+	})
+}
+
+function get_machine(req,res){
+	connection.query('SELECT ip FROM desafio3.Maquinas', function(error, results){
+		if(error){
+			res.sendStatus(500);
+		} else {
+			res.send(results);
 		}
 	})
 }

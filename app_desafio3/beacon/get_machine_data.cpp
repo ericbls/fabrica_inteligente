@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <fstream>
+#include <ctime>
 #include "http.hpp"
 #include "fwlib32.h"
 
@@ -47,12 +48,21 @@ class getMachineData
     cnc_statinfo(handle, &buf);
 
     // Criando pacote de envio
-    sprintf(pack, "{\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\"}",opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
+    sprintf(pack, "{\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\",",opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
   }
 
   // Função que envia os dados para o servidor desejado
   void getMachineData::send_package()
   {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int year = 1900+ltm->tm_year;
+    int month = 1+ltm->tm_mon;
+    int day = ltm->tm_day;
+    int hour = 1+ltm->tm_hour;
+    int minut = 1+ltm->tm_min;
+    int sec = 1+ltm->tm_sec;
+    strcat(pack, "\"time\":\"%d:%d:%d\",\"date\":\"%d/%d/%d\"}",hour,minut,sec,day,month,year);
     HTTP servidor;
     servidor.sendData(ip_maq, port, target, "application/json", pack)
   }

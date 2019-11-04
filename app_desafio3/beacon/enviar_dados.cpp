@@ -29,6 +29,7 @@ int main{
       {
         if strcmp(old_pack[i],dados_maq.pack)!=0
         {
+
           dados_maq.send_package();
         }
         old_pack[i]=dados_maq.pack;
@@ -38,7 +39,7 @@ int main{
         cout<<"machine "<<maquinas[i]<<" is unreachable\n";
       }
     }
-    sleep(10);
+  sleep(10);
   }
   return 0;
 }

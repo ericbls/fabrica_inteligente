@@ -12,8 +12,14 @@ class getMachineData
 public:
 
   getMachineData();
+  
+  unsigned short handle;
+  short ret;
+  char pack[1000];
+  char port[6];
+  char target[20];
 
-  void input_adress(const char* ip_maq);
+  void input_address(const char* ip_maq);
 
   void machine_connect();
 
@@ -22,4 +28,4 @@ public:
   void send_package();
 
   void machine_disconnect();
-}
+};

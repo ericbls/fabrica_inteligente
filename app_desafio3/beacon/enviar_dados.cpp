@@ -4,9 +4,10 @@
 #include <stdlib.h>
 #include <fstream>
 #include <time.h>
+#include <ctime>
 #include "get_machine_data.h"
 
-int main{
+int main(){
 
   HTTP servidor;
   getMachineData dados_maq;
@@ -16,10 +17,11 @@ int main{
     servidor.getData("18.191.146.49","80", "/desafio3/dados");
     char maquinas[4][20]=servidor.res;
     char old_pack[4][1024];
+    int i;
 
     /* Precisa ver aqui como que eu pego o dado e coloco em uma matriz */
 
-    for (i=1,i<=length(maquinas),i++)
+    for (i=1;i<=sizeof(maquinas);i++)
     {
       dados_maq.input_address(maquinas[i]);
       dados_maq.machine_connect();
@@ -27,12 +29,12 @@ int main{
 
       if (!dados_maq.ret)
       {
-        if strcmp(old_pack[i],dados_maq.pack)!=0
+        if (strcmp(old_pack[i],dados_maq.pack)!=0)
         {
 
           dados_maq.send_package();
         }
-        old_pack[i]=dados_maq.pack;
+        strcpy(old_pack[i],dados_maq.pack);
       }
       else
       {

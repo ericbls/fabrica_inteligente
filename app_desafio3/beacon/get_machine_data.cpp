@@ -74,4 +74,4 @@ class getMachineData
     cnc_exitprocess();
   }
 
-}
+};

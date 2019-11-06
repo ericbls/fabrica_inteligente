@@ -10,7 +10,7 @@ function updateList(dados){
 		table_html += "<th>" + item.ip + "</th>"
 		table_html += "</tr>"
 	})
-	$("#listTable tbody").html(table_html);
+	$("#listTable atbody").html(table_html);
 }
 
 

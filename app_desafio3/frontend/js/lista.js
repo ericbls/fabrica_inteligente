@@ -5,8 +5,8 @@ function updateList(dados){
 	dados.forEach(function(item, index){
 		table_html += "<tr>"
 		table_html += "<th>" + index + "</th>"
-		table_html += "<th>" + item.Fabricante + "</th>"
-		table_html += "<th>" + item.Modelo + "</th>"
+		table_html += "<th>" + item.fabricante + "</th>"
+		table_html += "<th>" + item.modelo + "</th>"
 		table_html += "<th>" + item.ip + "</th>"
 		table_html += "</tr>"
 	})
@@ -17,7 +17,7 @@ function updateList(dados){
 $(document).ready(function(){
 	$.ajax({
 		method: "GET",
-		url: "/exemplo/api/maquina",
+		url: "/desafio3/info/cadastro",
 	}).done(function(resp){
 		updateList(resp);
 	})

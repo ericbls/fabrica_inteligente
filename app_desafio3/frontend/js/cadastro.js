@@ -1,4 +1,3 @@
-
 function success(){
 
 	var alert  = '<div class="alert alert-success alert-dismissible fade show" role="alert">O cadastro foi realizado com sucesso!' 
@@ -30,7 +29,7 @@ $(document).ready(function(){
 
 		var request = $.ajax({
 			method: "POST",
-			url: "/exemplo/api/maquina",
+			url: "/desafio3/info/cadastro",
 			data: JSON.stringify(json),
 			contentType: "application/json",
     		dataType: "json",

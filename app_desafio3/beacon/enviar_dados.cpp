@@ -14,7 +14,7 @@ int main(){
 
   while(true)
   {
-    servidor.getData("18.191.146.49","80", "/desafio3/dados");
+    servidor.getData("18.191.146.49","80", "/desafio3/info/dados");
     char maquinas[4][20]=servidor.res;
     char old_pack[4][1024];
     int i;

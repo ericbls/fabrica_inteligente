@@ -19,7 +19,7 @@ class getMachineData
     short ret;
     char pack[1000];
     char port[6] = "80";
-    char target[20]="/desafio3/dados";
+    char target[20]="/desafio3/info/dados";
   }
 
   // Função que receberá como input os dados de entrada da máquina

@@ -17,6 +17,14 @@ function fail(){
 
 
 $(document).ready(function(){
+
+	$(function(){   
+      if ($("#fabricante").val() != "" && $("#modelo").val() != "" && $("#ip").val() != "" )
+          $(this).closest("form").find(":submit").removeAttr("disabled");
+      else
+          $(this).closest("form").find(":submit").attr("disabled", "disabled");      
+    })
+
 	$("#cadastroForm").on('submit', function(event){
 		event.preventDefault();
 

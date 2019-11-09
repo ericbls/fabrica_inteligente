@@ -1,6 +1,6 @@
 function success(){
 
-	var alert  = '<div class="alert alert-success alert-dismissible fade show" role="alert">O cadastro foi realizado com sucesso!' 
+	var alert  = '<div class="alert alert-success alert-dismissible fade show" role="alert">O cadastro foi realizado com sucesso!'
 	    alert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>';
 
 	$('.container').prepend(alert);
@@ -8,18 +8,11 @@ function success(){
 }
 
 function fail(){
-	var alert  = '<div class="alert alert-warning alert-dismissible fade show" role="alert">O cadastro nao pode ser realizado, verifique as opcoes e preencha novamente!' 
+	var alert  = '<div class="alert alert-warning alert-dismissible fade show" role="alert">O cadastro nao pode ser realizado, verifique as opcoes e preencha novamente!'
 	    alert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>';
 
 	$('.container').prepend(alert);
-
 }
-$(function(){   
-      if ($("#fabricante").val() != "" && $("#modelo").val() != "" && $("#ip").val() != "" )
-          $("#sub_but").removeAttr("disabled");
-      else
-          $("#sub_but").attr("disabled", "disabled");      
-    })
 
 $(document).ready(function(){
 

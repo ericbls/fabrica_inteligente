@@ -33,8 +33,8 @@ function add_data(req,res){
 	
 	console.log(req.body);
 
-	let values = '"' + req.body.ip + '","' + req.body.pmc_alm +'","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '"';
-	connection.query('INSERT INTO desafio3.Dados(ip, pmc_alm, alm_stat, emg_stat, run_stat, motion_stat) VALUES (' + values + ')', function(error, results){
+	let values = '"' + req.body.ip + '","' + req.body.pmc_alm +'","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '","' + req.body.time + '","' + req.body.date + '"';
+	connection.query('INSERT INTO desafio3.Dados(ip, pmc_alm, alm_stat, emg_stat, run_stat, motion_stat, time, date) VALUES (' + values + ')', function(error, results){
 		if(error){
 			console.log(error);
 			res.sendStatus(500);
@@ -45,7 +45,7 @@ function add_data(req,res){
 }
 
 function get_machine(req,res){
-	connection.query('SELECT ip FROM desafio3.Maquinas', function(error, results){
+	connection.query('SELECT * FROM desafio3.Maquinas', function(error, results){
 		if(error){
 			res.sendStatus(500);
 		} else {

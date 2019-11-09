@@ -20,9 +20,9 @@ $(document).ready(function(){
 
 	$(function(){   
       if ($("#fabricante").val() != "" && $("#modelo").val() != "" && $("#ip").val() != "" )
-          $(this).closest("form").find(":submit").removeAttr("disabled");
+          $("#sub_but").fremoveAttr("disabled");
       else
-          $(this).closest("form").find(":submit").attr("disabled", "disabled");      
+          $("#sub_but").attr("disabled", "disabled");      
     })
 
 	$("#cadastroForm").on('submit', function(event){

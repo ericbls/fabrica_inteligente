@@ -16,7 +16,7 @@ function fail(){
 }
 $(function(){   
       if ($("#fabricante").val() != "" && $("#modelo").val() != "" && $("#ip").val() != "" )
-          $("#sub_but").fremoveAttr("disabled");
+          $("#sub_but").removeAttr("disabled");
       else
           $("#sub_but").attr("disabled", "disabled");      
     })

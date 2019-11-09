@@ -18,13 +18,6 @@ function fail(){
 
 $(document).ready(function(){
 
-	/*$(function(){   
-      if ($("#fabricante").val() != "" && $("#modelo").val() != "" && $("#ip").val() != "" )
-          $("#sub_but").fremoveAttr("disabled");
-      else
-          $("#sub_but").attr("disabled", "disabled");      
-    })*/
-
 	$("#cadastroForm").on('submit', function(event){
 		event.preventDefault();
 

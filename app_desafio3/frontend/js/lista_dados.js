@@ -5,9 +5,14 @@ function updateList(dados){
 	dados.forEach(function(item, index){
 		table_html += "<tr>"
 		table_html += "<th>" + index + "</th>"
-		table_html += "<th>" + item.fabricante + "</th>"
-		table_html += "<th>" + item.modelo + "</th>"
 		table_html += "<th>" + item.ip + "</th>"
+		table_html += "<th>" + item.pmc_alm + "</th>"
+		table_html += "<th>" + item.alm_stat + "</th>"
+		table_html += "<th>" + item.emg_stat + "</th>"
+		table_html += "<th>" + item.run_stat + "</th>"
+		table_html += "<th>" + item.motion_stat + "</th>"
+		table_html += "<th>" + item.time + "</th>"
+		table_html += "<th>" + item.date + "</th>"
 		table_html += "</tr>"
 	})
 	$("#listTable tbody").html(table_html);

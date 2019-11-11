@@ -26,13 +26,15 @@ int HTTP::getData(const char* host, const char* port, const char* target){
         beast::flat_buffer buffer;
 
         // Declare a container to hold the response
-        http::response<http::dynamic_body> res;
+        http::response<http::string_body> res;
 
         // Receive the HTTP response
         http::read(stream, buffer, res);
 
+				std::string s = res.body();
+
         // Write the message to standard out
-        std::cout << res << std::endl;
+        std::cout << s << std::endl;
 
         // Gracefully close the socket
         beast::error_code ec;

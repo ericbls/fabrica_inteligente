@@ -54,4 +54,15 @@ function add_machine(req,res){
 	 })
 }
 
+function get_data_from_machine(req, res){
+  connection.query("SELECT * FROM desafio3.Dados WHERE maquina_id=" + req.params.id, function(error, results){
+    if(error){
+      console.log(error);
+      res.sendStatus(500);
+    } else {
+      res.send(results);
+    }
+  })
+}
+
 module.exports = {get_data, get_machine, add_machine, add_data}

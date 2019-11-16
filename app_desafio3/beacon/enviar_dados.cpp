@@ -9,7 +9,6 @@
 
 int main(){
 
-  HTTP servidor;
   getMachineData dados_maq;
 
   while(true)

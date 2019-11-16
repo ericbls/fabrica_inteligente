@@ -16,11 +16,18 @@ class getMachineData
   getMachineData::getMachineData()
   {
     unsigned short handle;
+    HTTP servidor;
     short ret;
     char pack[1000];
     char port[6] = "80";
     char target[20]="/desafio3/info/dados";
   }
+
+  void getMachineData::get_machines()
+  {
+    servidor.getData("18.191.146.49","80", "/desafio3/info/cadastro");
+  }
+
 
   // Função que receberá como input os dados de entrada da máquina
   void getmachineData::input_address(const char* ip)
@@ -63,7 +70,6 @@ class getMachineData
     int minut = 1+ltm->tm_min;
     int sec = 1+ltm->tm_sec;
     strcat(pack, "\"time\":\"%d:%d:%d\",\"date\":\"%d/%d/%d\"}",hour,minut,sec,day,month,year);
-    HTTP servidor;
     servidor.sendData(ip_maq, port, target, "application/json", pack)
   }
 

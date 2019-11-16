@@ -65,4 +65,4 @@ function get_data_from_machine(req, res){
   })
 }
 
-module.exports = {get_data, get_machine, add_machine, add_data}
+module.exports = {get_data, get_machine, add_machine, add_data, get_data_from_machine}

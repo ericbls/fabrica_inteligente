@@ -19,18 +19,15 @@ class getMachineData
 public:
 
   getMachineData();
-  
+
   unsigned short handle;
+  HTTP servidor;
   short ret;
-  char pack[1000];
-  char port[6];
-  char target[20];
+  char pack_in[1000];
   char ip_maq[20];
   int id_maq;
 
-  void get_machines_ips();
-
-  void get_machines_ids();
+  void get_machine_ips();
 
   void input_address(const char* ip_maq);
 

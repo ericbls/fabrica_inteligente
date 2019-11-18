@@ -3,16 +3,21 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
 
-char *HTTP::getData(const char* host, const char* port, const char* target, char* ret_data[]){
+int HTTP::getData(const char* host, const char* port, const char* target, char* ret_data){
 	try{
         net::io_context ioc;
         tcp::resolver resolver(ioc);
         beast::tcp_stream stream(ioc);
 
-        //char target[] = "/";
         int version = 11;
 
+				cout<<port<<endl;
+				cout<<target<<endl;
         auto const results = resolver.resolve(host, port);
 
         stream.connect(results);
@@ -31,11 +36,8 @@ char *HTTP::getData(const char* host, const char* port, const char* target, char
         // Receive the HTTP response
         http::read(stream, buffer, res);
 
-				std::string s = res.body();
-
         // Write the message to standard out
-        std::cout << s << std::endl;
-        strcpy(ret_data, s);
+        strcpy(ret_data, res.body().data());
 
         // Gracefully close the socket
         beast::error_code ec;
@@ -43,17 +45,15 @@ char *HTTP::getData(const char* host, const char* port, const char* target, char
 
         // not_connected happens sometimes
         // so don't bother reporting it.
-        //
         if(ec && ec != beast::errc::not_connected)
             throw beast::system_error{ec};
 	}
 	catch(std::exception const& e)
     {
         std::cerr << "Error: " << e.what() << std::endl;
-        return "EXIT_FAILURE";
+        return EXIT_FAILURE;
     }
-    return ret_data;
-    //return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
 int HTTP::sendData(const char* host,const char* port, const char* target, const char* contentType, const char* data){

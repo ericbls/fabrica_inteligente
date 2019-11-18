@@ -3,8 +3,7 @@
 int main()
 {
 	getMachineData dados_maq;
+	dados_maq.get_machine_ips();
 
-	dados_maq.get_machines;
-	
 	return 0;
 }

@@ -13,14 +13,12 @@ int main(){
 
   while(true)
   {
-    servidor.getData("18.191.146.49","80", "/desafio3/info/dados");
-    char maquinas[4][20]=servidor.res;
+    dados_maq.get_machines();
     char old_pack[4][1024];
-    int i;
-
+    
     /* Precisa ver aqui como que eu pego o dado e coloco em uma matriz */
 
-    for (i=1;i<=sizeof(maquinas);i++)
+    for (int i=1;i<=sizeof(maquinas);i++)
     {
       dados_maq.input_address(maquinas[i]);
       dados_maq.machine_connect();

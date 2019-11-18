@@ -14,7 +14,7 @@ using tcp = net::ip::tcp;
 
 class HTTP {
 	public:
-		int getData(const char* host, const char* port, const char* target);
+		int getData(const char* host, const char* port, const char* target, char ret_data);
 		int sendData(const char* host, const char* port, const char* target, const char* contentType, const char* data);
 };
 

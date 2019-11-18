@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-int HTTP::getData(const char* host, const char* port, const char* target){
+char *HTTP::getData(const char* host, const char* port, const char* target, char* ret_data[]){
 	try{
         net::io_context ioc;
         tcp::resolver resolver(ioc);
@@ -35,6 +35,7 @@ int HTTP::getData(const char* host, const char* port, const char* target){
 
         // Write the message to standard out
         std::cout << s << std::endl;
+        strcpy(ret_data, s);
 
         // Gracefully close the socket
         beast::error_code ec;
@@ -49,9 +50,10 @@ int HTTP::getData(const char* host, const char* port, const char* target){
 	catch(std::exception const& e)
     {
         std::cerr << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
+        return "EXIT_FAILURE";
     }
-    return EXIT_SUCCESS;
+    return ret_data;
+    //return EXIT_SUCCESS;
 }
 
 int HTTP::sendData(const char* host,const char* port, const char* target, const char* contentType, const char* data){

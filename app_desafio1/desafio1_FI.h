@@ -1,15 +1,16 @@
 #ifndef _INCL_MAIN_
 #define _INCL_MAIN_
 
-struct estrutura {
-		char nome[100];
+struct torta {
 		char sabor[100];
+		char ingrediente1[200];
+		char ingrediente2[200];
 		struct torta *prox;
 	};
 
-void adicionaPessoa(struct estrutura grupo);
-
-//printf("%p \n", pessoa );
-
+void addSabor(struct torta *receitas);
+void delSabor(struct torta *receitas);
+void listSabor(struct torta *receitas);
+void getSabor(struct torta *receitas);
 
 #endif

@@ -1,13 +1,4 @@
-#include <iostream>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <fstream>
-#include <ctime>
-#include "http.hpp"
-#include "fwlib32.h"
-
-using namespace std;
+#include "get_machine_data.h"
 
 class getMachineData
 {
@@ -18,21 +9,47 @@ class getMachineData
     unsigned short handle;
     HTTP servidor;
     short ret;
+    char server_ip[20] = "18.191.146.49";
     char pack[1000];
     char port[6] = "80";
-    char target[20]="/desafio3/info/dados";
+    char target[20]="/desafio3/info/cadastro";
+    //char *all_ips;
+    //int *all_ids;
+    char ip_maq[20];
+    int id_maq;
   }
 
-  void getMachineData::get_machines()
+  char getMachineData::get_machines_ips()
   {
-    servidor.getData("18.191.146.49","80", "/desafio3/info/cadastro");
+    servidor.getData(server_ip, port, target, pack);
+    json jip = pack_json;
+    int total_machines = jip["ip"].size();
+    //char all_ips[total_machines][20];
+    for(int i = 0; i<=total_machines; i++)
+    {
+      strcpy(all_ips[i],jip.ip[i]);
+    }
+    return all_ips;
   }
 
+  int getMachineData::get_machines_ids()
+  {
+    servidor.getData(server_ip, port, target, pack);
+    json jid = pack_json;
+    //int total_machines = j["id"].size();
+    int all_ids[total_machines];
+    for(int i = 0; i<=total_machines; i++)
+    {
+      all_ids[i]=j.maquina_id[i];
+    }
+    return all_ids;
+  }
 
   // Função que receberá como input os dados de entrada da máquina
-  void getmachineData::input_address(const char* ip)
+  void getmachineData::input_address(char ip, int id)
   {
-    char ip_maq[20] = ip;
+    strcpy(ip_maq,ip);
+    id_maq=id;
   }
 
   // Função para inicializar comunicação com a máquina
@@ -55,7 +72,7 @@ class getMachineData
     cnc_statinfo(handle, &buf);
 
     // Criando pacote de envio
-    sprintf(pack, "{\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\",",opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
+    sprintf(pack, "{\"maquina_id\":\"%d\"\"ip\":\"%s\",\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\",",id_maq,ip_maq,opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
   }
 
   // Função que envia os dados para o servidor desejado

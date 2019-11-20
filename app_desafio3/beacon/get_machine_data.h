@@ -21,23 +21,25 @@ public:
   getMachineData();
 
   unsigned short handle;
-  HTTP servidor;
-  short ret;
   char pack_in[1000];
   char ip_maq[20];
   int id_maq;
 
-  void get_machine_ips();
+  void get_machines();
 
-  void input_address(const char* ip_maq);
+  void execute();
 
-  void machine_connect();
+private:
+
+  HTTP servidor;
+  short ret;
 
   void data_extract();
 
   void send_package();
 
-  void machine_disconnect();
+  void disconnect();
+
 };
 
 #endif

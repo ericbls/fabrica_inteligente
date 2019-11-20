@@ -3,15 +3,16 @@
 // Construtor de classe
 getMachineData::getMachineData()
 {
-  unsigned short handle;
   HTTP servidor;
+  unsigned short handle;
   short ret;
   char *pack_in[1000];
+  char pack[1000]
   char ip_maq[20];
   int id_maq;
 }
 
-void getMachineData::get_machine_ips()
+void getMachineData::get_machines()
 {
   servidor.getData("18.191.146.49", "80", "/desafio3/info/cadastro", pack_in);
   //json j_ip = json::parse(pack_in);
@@ -54,22 +55,24 @@ void getMachineData::send_package()
   servidor.sendData(ip_maq, port, target, "application/json", pack)
 }
 
-/*
+// Fechando conexao
+void getMachineData::disconnect()
+{
+  // Finalizando conexão
+  cnc_exitprocess();
+}
+
 // Executando em loops
-void getMachineData::execute_extract()
+void getMachineData::execute()
 {
   json j_ip = json::parse(pack_in);
   for(int i; i<=j_ip.size(), i++)
   {
     id_maq=j_ip[i]["id"];
     strcpy(ip_maq,j_ip[i]["ip"]);
-    data_extract()
+    data_extract();
+    send_package();
   }
+  disconnect();
 }
-*/
-// Fechando conexao
-void getMachineData::machine_disconnect()
-{
-  // Finalizando conexão
-  cnc_exitprocess();
-}
+

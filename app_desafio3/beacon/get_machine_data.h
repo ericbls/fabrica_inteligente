@@ -22,8 +22,10 @@ public:
 
   unsigned short handle;
   char pack_in[1000];
+  char pack[1000];
   char ip_maq[20];
   int id_maq;
+  char date_time[50];
 
   void get_machines();
 

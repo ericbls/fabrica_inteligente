@@ -7,9 +7,10 @@ getMachineData::getMachineData()
   unsigned short handle;
   short ret;
   char *pack_in[1000];
-  char pack[1000]
+  char pack[1000];
   char ip_maq[20];
   int id_maq;
+  char date_time[50];
 }
 
 void getMachineData::get_machines()
@@ -37,7 +38,7 @@ void getMachineData::data_extract()
   cnc_statinfo(handle, &buf);
 
   // Criando pacote de envio
-  sprintf(pack, "{\"maquina_id\":\"%d\"\"ip\":\"%s\",\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\",",id_maq,ip_maq,opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
+  sprintf(pack, "{\"maquina_id\":\"%d\",\"ip\":\"%s\",\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_status\":\"%d\",\"motion_stat\":\"%d\",",id_maq,ip_maq,opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
 }
 
 // Função que envia os dados para o servidor desejado
@@ -47,12 +48,13 @@ void getMachineData::send_package()
   tm *ltm = localtime(&now);
   int year = 1900+ltm->tm_year;
   int month = 1+ltm->tm_mon;
-  int day = ltm->tm_day;
+  int day = ltm->tm_mday;
   int hour = 1+ltm->tm_hour;
   int minut = 1+ltm->tm_min;
   int sec = 1+ltm->tm_sec;
-  strcat(pack, "\"time\":\"%d:%d:%d\",\"date\":\"%d/%d/%d\"}",hour,minut,sec,day,month,year);
-  servidor.sendData(ip_maq, port, target, "application/json", pack)
+  sprintf(date_time, "\"time\":\"%d:%d:%d\",\"date\":\"%d/%d/%d\"}", hour,minut,sec,day,month,year);
+  strcat(pack,date_time);
+  servidor.sendData(ip_maq, "80", "/desafio3/info/cadastro", "application/json", pack);
 }
 
 // Fechando conexao
@@ -66,13 +68,12 @@ void getMachineData::disconnect()
 void getMachineData::execute()
 {
   json j_ip = json::parse(pack_in);
-  for(int i; i<=j_ip.size(), i++)
+  for(int i; i<=j_ip.size(); i++)
   {
     id_maq=j_ip[i]["id"];
-    strcpy(ip_maq,j_ip[i]["ip"]);
+    strcpy(ip_maq,string(j_ip[i]["ip"]).c_str());
     data_extract();
     send_package();
   }
   disconnect();
 }
-

@@ -35,6 +35,7 @@ private:
 
   HTTP servidor;
   short ret;
+  bool on_off;
 
   void data_extract();
 

@@ -20,7 +20,7 @@ function add_data(req,res){
 
 	console.log(req.body);
 
-	let values = '"' + req.body.id_maquina + '","' + req.body.ip + '","' + req.body.pmc_alm + '","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '","' + req.body.time + '","' + req.body.date + '"';
+	let values = '"' + req.body.maquina_id + '","' + req.body.ip + '","' + req.body.pmc_alm + '","' + req.body.alm_stat + '","' + req.body.emg_stat + '","' + req.body.run_stat + '","' + req.body.motion_stat + '","' + req.body.time + '","' + req.body.date + '"';
 	connection.query('INSERT INTO desafio3.Dados(maquina_id, ip, pmc_alm, alm_stat, emg_stat, run_stat, motion_stat, time, date) VALUES (' + values + ')', function(error, results){
 		if(error){
 			console.log(error);

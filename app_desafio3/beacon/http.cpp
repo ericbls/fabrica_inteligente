@@ -16,8 +16,8 @@ int HTTP::getData(const char* host, const char* port, const char* target, char* 
 
         int version = 11;
 
-				cout<<port<<endl;
-				cout<<target<<endl;
+				cout<<"CONECTANDO EM PORTA: "<<port<<", TARGET: "<<target<<""<<endl;
+
         auto const results = resolver.resolve(host, port);
 
         stream.connect(results);
@@ -56,7 +56,8 @@ int HTTP::getData(const char* host, const char* port, const char* target, char* 
     return EXIT_SUCCESS;
 }
 
-int HTTP::sendData(const char* host,const char* port, const char* target, const char* contentType, const char* data){
+int HTTP::sendData(const char* host,const char* port, const char* target, const char* contentType, const char* data)
+{
 	try{
         net::io_context io_context;
         tcp::resolver resolver(io_context);
@@ -87,7 +88,7 @@ int HTTP::sendData(const char* host,const char* port, const char* target, const 
         http::read(stream, buffer, res);
 
         // Write the message to standard out
-        std::cout << res << std::endl;
+        std::cout << "STATUS DO ENVIO: "<< "res" << std::endl;
 
         // Gracefully close the socket
         beast::error_code ec;

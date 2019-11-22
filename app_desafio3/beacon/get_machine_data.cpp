@@ -47,7 +47,7 @@ void getMachineData::data_extract()
     cnc_statinfo(handle, &buf);
 
     // Criando pacote de envio
-    sprintf(pack, "{\"maquina_id\":\"%d\",\"ip\":\"%s\",\"pmc_msg\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_stat\":\"%d\",\"motion_stat\":\"%d\",",id_maq,ip_maq,opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
+    sprintf(pack, "{\"maquina_id\":\"%d\",\"ip\":\"%s\",\"pmc_alm\":\"%s\",\"alm_stat\":\"%d\",\"emg_stat\":\"%d\",\"run_stat\":\"%d\",\"motion_stat\":\"%d\",",id_maq,ip_maq,opmsg.data,buf.alarm,buf.emergency,buf.run,buf.motion);
   }
 }
 
@@ -90,7 +90,7 @@ void getMachineData::execute()
   {
     id_maq=j_ip[i]["id"];
     strcpy(ip_maq,string(j_ip[i]["ip"]).c_str());
-    cout<<"\nPEGUEI O "<<id_maq<<"o IP: "<<ip_maq<<endl;
+    cout<<"\nPEGUEI O "<<i+1<<"# IP: "<<ip_maq<<endl;
     data_extract();
     send_package();
   }

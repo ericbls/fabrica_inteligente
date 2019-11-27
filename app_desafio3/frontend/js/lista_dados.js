@@ -5,7 +5,7 @@ function updateList(dados){
 	dados.forEach(function(item, index){
 		table_html += "<tr>"
 		table_html += "<th>" + index + "</th>"
-		table_html += "<th>" + item.id_maquina + "</th>"
+		table_html += "<th>" + item.maquina_id + "</th>"
 		table_html += "<th>" + item.ip + "</th>"
 		table_html += "<th>" + item.pmc_alm + "</th>"
 		table_html += "<th>" + item.alm_stat + "</th>"
@@ -21,13 +21,17 @@ function updateList(dados){
 
 
 $(document).ready(function(){
-	$.ajax({
-		method: "GET",
-		url: "/desafio3/info/dados",
-	}).done(function(resp){
-		updateList(resp);
-	})
-	.fail(function() {
-    	alert( "error" );
-  	})
+
+
+	setInterval(function(){
+		$.ajax({
+			method: "GET",
+			url: "/desafio3/info/dados",
+		}).done(function(resp){
+			updateList(resp);
+		})
+		.fail(function() {
+	    	alert( "error" );
+	  	})
+	 },3000);
 })

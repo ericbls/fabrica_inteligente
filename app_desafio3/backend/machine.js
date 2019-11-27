@@ -4,6 +4,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'ubuntu',
   password : 'buonpater7'
+  database : 'desafio3'
 });
 
 function get_data(req,res){
